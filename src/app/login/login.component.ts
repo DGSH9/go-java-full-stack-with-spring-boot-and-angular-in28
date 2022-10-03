@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit {
   //Login function defined
   handleLogin(){
     console.log(this.username);
+    console.log(this.password);
+
 
   }
 
