@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
+  //String
+  message:string= 'Hello from DGSH';
 
+  //deafult constructor
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.message);
   }
 
 }
