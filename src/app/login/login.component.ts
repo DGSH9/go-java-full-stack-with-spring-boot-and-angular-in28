@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
   errorMessage='Invalid Credentials';
   invalidLogin = false;
 
-
   constructor() { }
 
   ngOnInit(): void {
