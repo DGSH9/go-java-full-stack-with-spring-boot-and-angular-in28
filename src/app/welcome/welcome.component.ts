@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WelcomeDataService } from '../service/data/welcome-data.service';
+import { HelloWordlBean, WelcomeDataService } from '../service/data/welcome-data.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,7 +11,10 @@ export class WelcomeComponent implements OnInit {
 
   //String
   message: string = 'Hello from DGSH';
+  welcomeMessageFromService: string = '';
   name = '';
+
+
   //deafult constructor
   //AcivatedRoute
   constructor(private route: ActivatedRoute,
@@ -27,7 +30,16 @@ export class WelcomeComponent implements OnInit {
   getWelcomeMessage() {
     // console.log("get welcome message");
     console.log(this.welcomeDataService.executeHelloWorldService());
-    this.welcomeDataService.executeHelloWorldService().subscribe();
+    this.welcomeDataService.executeHelloWorldService().subscribe(
+      data => this.handleResponse(data)
+    );
+    console.log("last line of getWelcomeMessage");
+
+  }
+  handleResponse(data: HelloWordlBean) {
+    console.log(data);
+    this.welcomeMessageFromService = data.message;
+
   }
 
 }
