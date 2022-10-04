@@ -30,6 +30,7 @@ export class Todo {
 export class ListTodosComponent implements OnInit {
 
   //hard coded todo data
+  message: string = '';
   todos: Todo[] = [
     // new Todo(1,'Angular',false,new Date()),
     // new Todo(2,'React',true,new Date()),
@@ -43,9 +44,29 @@ export class ListTodosComponent implements OnInit {
   constructor(private todoDataServiceService: TodoDataServiceService) { }
 
   ngOnInit() {
+    this.refressTodo();
+  }
+
+
+  refressTodo() {
     this.todoDataServiceService.retrieveAllTodos('dgsh').subscribe(
       response => { this.todos = response; console.log(response); }
     );
   }
+
+  //deleteTodo
+  deleteTodo(id: number) {
+    // console.log(`deleteTodo called..${id}`)
+    this.todoDataServiceService.deleteTodo("dgsh", id).subscribe(
+      response => {
+        console.log(response);
+        this.message = `Delete of ${id} Successfull`;
+        this.refressTodo();
+      }
+    )
+
+
+  }
+
 
 }
