@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Todo } from '../list-todos/list-todos.component';
 import { TodoDataServiceService } from '../service/data/todo-data-service.service';
 
@@ -12,8 +12,13 @@ export class TodoComponent implements OnInit {
 
   id: number = 0;
   todo!: Todo;
-  constructor(private todoDataServiceService: TodoDataServiceService,
-    private route: ActivatedRoute) { }
+
+  //dependcy injection
+  constructor(
+    private todoDataServiceService: TodoDataServiceService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -24,11 +29,12 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-    // this.todoDataServiceService.retrieveTodo('dgsh', id).subscribe(
-    //   response => {
-    //     console.log(response);
-    //   }
-    // );
+    this.todoDataServiceService.putTodo('dgsh', this.id, this.todo).subscribe(
+      response => {
+        console.log(response)
+        this.router.navigate(['todos'])
+      }
+    );
   }
 
 }
