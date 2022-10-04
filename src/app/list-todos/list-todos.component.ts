@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoDataServiceService } from '../service/data/todo-data-service.service';
 
 //blueprint class of object
 //Future
@@ -10,13 +11,13 @@ import { Component, OnInit } from '@angular/core';
 // - Spring Boot
 // - Spring Security
 
-export class Todo{
+export class Todo {
   constructor(
-        public id:number,
-        public description:string,
-        public done:boolean,
-        public targetDate:Date
-  ){
+    public id: number,
+    public description: string,
+    public done: boolean,
+    public targetDate: Date
+  ) {
 
   }
 }
@@ -29,17 +30,22 @@ export class Todo{
 export class ListTodosComponent implements OnInit {
 
   //hard coded todo data
-  todos = [
-    new Todo(1,'Angular',false,new Date()),
-    new Todo(2,'React',true,new Date()),
-    new Todo(3,'java',true,new Date()),
-    new Todo(4,'Typecript',false,new Date())
+  todos: Todo[] = [
+    // new Todo(1,'Angular',false,new Date()),
+    // new Todo(2,'React',true,new Date()),
+    // new Todo(3,'java',true,new Date()),
+    // new Todo(4,'Typecript',false,new Date())
+
+
   ];
 
 
-  constructor() { }
+  constructor(private todoDataServiceService: TodoDataServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.todoDataServiceService.retrieveAllTodos('dgsh').subscribe(
+      response => { this.todos = response; console.log(response); }
+    );
   }
 
 }
