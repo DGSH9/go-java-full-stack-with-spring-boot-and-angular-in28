@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     // if (this.username === 'dgsh' && this.password === 'dgsh')
     if (this.hardCodedAuthenticationService.authenticate(this.username, this.password)) {
       //redrect to welcome page
-      this.router.navigate(['welcome']);
+      this.router.navigate(['welcome', this.username]);
       this.invalidLogin = false;
     }
     else {
