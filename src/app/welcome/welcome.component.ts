@@ -21,7 +21,7 @@ export class WelcomeComponent implements OnInit {
     private welcomeDataService: WelcomeDataService) { }
 
   ngOnInit(): void {
-    console.log(this.message);
+    // console.log(this.message);
     // console.log(this.route.snapshot.params['name']);
     this.name = this.route.snapshot.params['name'];
   }
@@ -29,15 +29,15 @@ export class WelcomeComponent implements OnInit {
   //getWelcomeMessage
   getWelcomeMessage() {
     // console.log("get welcome message");
-    console.log(this.welcomeDataService.executeHelloWorldService());
+    // console.log(this.welcomeDataService.executeHelloWorldService());
     this.welcomeDataService.executeHelloWorldService().subscribe(
       data => this.handleResponse(data)
     );
-    console.log("last line of getWelcomeMessage");
+    // console.log("last line of getWelcomeMessage");
 
   }
   handleResponse(data: HelloWordlBean) {
-    console.log(data);
+    // console.log(data);
     this.welcomeMessageFromService = data.message;
 
   }

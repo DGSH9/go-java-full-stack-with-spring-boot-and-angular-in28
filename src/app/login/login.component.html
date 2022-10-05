@@ -7,7 +7,10 @@
   <div>
     UserName<input type="text" name="username" [(ngModel)]="username">
     Password<input type="password" name="password" [(ngModel)]="password">
-    <button (click)="handleLogin()" class="btn btn-success ml-2">Login</button>
+
+    <!-- <button (click)="handleLogin()" class="btn btn-success ml-2">Login</button> -->
+    <button (click)="handleBasicAuthLogin()" class="btn btn-success ml-2">Login</button>
+
   </div>
 
 </div>
